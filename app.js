@@ -41,5 +41,6 @@ app.post('/generate', function(req, res){
   res.render('calendar.ejs', {layout: false, date: req.body.date, time: req.body.time, workout: req.body.workout})
 });
 
-app.listen(3030);
+var port = process.env.PORT || 3030;
+app.listen(port);
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);

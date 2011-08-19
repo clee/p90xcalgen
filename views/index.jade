@@ -1,0 +1,26 @@
+script
+	$(document).ready(function() {
+		$('#datepicker').datepicker();
+		$('#timepicker').timepicker();
+	});
+
+- var workouts = ['P90X Classic', 'P90X Lean', 'P90X Doubles'];
+
+form(method="POST", action="/generate", enctype="application/x-www-form-urlencoded")
+	fieldset
+		legend P90X Calendar Generator
+		ul
+			li
+				label(for='datepicker') Start date
+				input#datepicker(required, name="date")
+			li
+				label(for='timepicker') Start time
+				input#timepicker(required, name="time")
+			li
+				label(for='workout') Workout
+				select#workout(name="workout")
+					- workouts.forEach(function(workout, index) {
+						option(value=index)= workout
+					- });
+			li
+				input(type='submit', value='Generate calendar')

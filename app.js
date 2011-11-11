@@ -7,6 +7,8 @@ var express = require('express');
 
 var app = module.exports = express.createServer();
 
+var data = require('./lib/data');
+
 // Configuration
 
 app.configure(function(){
@@ -30,15 +32,23 @@ app.configure('production', function(){
 
 app.get('/', function(req, res){
   res.render('index', {
-    title: 'P90X Calendar Generator'
+    title: 'P90X Calendar Generator',
+    workouts: data.workouts
   });
 });
 
 app.post('/generate', function(req, res){
   console.log("user hit generate!, with %j", req.body);
   res.contentType('text/calendar');
-  res.attachment('p90x.ics');
-  res.render('calendar.ejs', {layout: false, date: req.body.date, time: req.body.time, workout: req.body.workout})
+  res.attachment('workout.ics');
+  res.render('calendar.ejs',
+    {layout: false,
+     date: req.body.date,
+     time: req.body.time,
+     workout: req.body.workout,
+     workouts: data.workouts,
+     exercises: data.exercises,
+     routines: data.routines});
 });
 
 var port = process.env.PORT || 3030;

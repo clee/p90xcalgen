@@ -1,72 +1,23 @@
 <%
-var workouts = ['P90X Classic', 'P90X Lean', 'P90X Doubles'];
-var exercises = ['Chest, Back + Ab Ripper X', 
-                 'Plyometrics',
-                 'Shoulders, Arms + Ab Ripper X',
-                 'Yoga X',
-                 'Legs, Back + Ab Ripper X',
-                 'Kenpo X',
-                 'X Stretch',
-                 'Core Synergistics',
-                 'Chest, Shoulders + Ab Ripper X',
-                 'Back, Biceps + Ab Ripper X',
-                 'Cardio X',
-                 'Ab Ripper X'];
-var routines = [
-[0, 1, 2, 3, 4, 5, 6,
- 0, 1, 2, 3, 4, 5, 6,
- 0, 1, 2, 3, 4, 5, 6,
- 3, 7, 5, 6, 7, 3, 6,
- 8, 1, 9, 3, 4, 5, 6,
- 8, 1, 9, 3, 4, 5, 6,
- 8, 1, 9, 3, 4, 5, 6,
- 3, 7, 5, 6, 7, 3, 6,
- 0, 1, 2, 3, 4, 5, 6,
- 8, 1, 9, 3, 4, 5, 6,
- 0, 1, 2, 3, 4, 5, 6,
- 8, 1, 9, 3, 4, 5, 6,
- 3, 7, 5, 6, 7, 3, 6 ],
-[7, 10, 2, 3, 4, 5, 6,
- 7, 10, 2, 3, 4, 5, 6,
- 7, 10, 2, 3, 4, 5, 6,
- 3, 7, 5, 6, 10, 3, 6,
- 7, 10, 9, 3, 4, 5, 6,
- 7, 10, 9, 3, 4, 5, 6,
- 7, 10, 9, 3, 4, 5, 6,
- 3, 7, 5, 6, 10, 3, 6,
- 0, 10, 2, 3, 7, 5, 6,
- 8, 10, 9, 3, 7, 5, 6,
- 0, 10, 2, 3, 7, 5, 6,
- 8, 10, 9, 3, 7, 5, 6,
- 3, 7, 5, 6, 7, 3, 6 ],
-[0, 1, 2, 3, 4, 5, 6,
- 0, 1, 2, 3, 4, 5, 6,
- 0, 1, 2, 3, 4, 5, 6,
- 3, 7, 5, 6, 7, 3, 6,
- [10, 8], 1, [10, 9], 3, [10, 4], 5, 6,
- [10, 8], 1, [10, 9], 3, [10, 4], 5, 6,
- [10, 8], 1, [10, 9], 3, [10, 4], 5, 6,
- 3, 7, 5, 6, 7, 3, 6,
- [10, 0], 1, [10, 2], 3, [10, 4], 5, 6,
- [10, 8], 1, [10, 9], 3, [10, 4], 5, 6,
- [10, 0], 1, [10, 2], 3, [10, 4], 5, 6,
- [10, 8], 1, [10, 9], 3, [10, 4], 5, 6,
- 3, 7, 5, 6, 7, 3, 6 ]
-];
-
 var start = Date.parse(date + ' ' + time + 'Z');
 %>BEGIN:VCALENDAR
 VERSION:2.0
-PRODID:-//express.js p90x calendar generator//Chris Lee <clee@mg8.org>//EN
+PRODID:-//express.js workout calendar generator//Chris Lee <clee@mg8.org>//EN
 CALSCALE:GREGORIAN
-X-WR-CALNAME;VALUE=TEXT:P90X
-<% for (var i = 0; i < 90; ++i) {
+X-WR-CALNAME;VALUE=TEXT:Exercise
+<% for (var i = 0; i < routines[workout].length; ++i) {
+	var routine = routines[workout][i];
 	var current = start + (i * 86400000);
 	var dtstart = (new Date(current)).toISOString().replace(/[-:\.]/g, '').replace(/000Z/, '');
-	var dtend = (new Date(current + (60000 * 90))).toISOString().replace(/[-:\.]/g, '').replace(/000Z/, '');
+	if (Array.isArray(routine)) {
+		var dtend = (new Date(current + ((60000 * 60) * routine.length))).toISOString().replace(/[-:\.]/g, '').replace(/000Z/, '');
+	} else {
+		var dtend = (new Date(current + (60000 * 90))).toISOString().replace(/[-:\.]/g, '').replace(/000Z/, '');
+	}
 %>BEGIN:VEVENT
-SUMMARY:<%= exercises[routines[workout][i]] %>
-DESCRIPTION:False
+<% if (Array.isArray(routine)) { %>SUMMARY:<%- routine.map(function (r) { return exercises[r]; }).join(' & ') %>
+<% } else { %>SUMMARY:<%= exercises[routine] %>
+<% } %>DESCRIPTION:False
 DTSTAMP:<%= dtstart %>
 DTSTART:<%= dtstart %>
 DTEND:<%= dtend %>

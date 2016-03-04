@@ -1,12 +1,13 @@
 {
-    "name": "p90xcalgen"
-  , "version": "0.3.9"
-  , "private": true
-  , "dependencies": {
-      "express": ">= 4.13"
-    , "body-parser": ">= 1.15.0"
-    , "errorhandler": ">= 1.4.0"
-    , "jade": ">= 1.10.0"
-    , "ejs": ">= 2.4.0"
-  }
+	"name": "p90xcalgen",
+	"version": "0.3.9",
+	"private": true,
+	"dependencies": {
+		"express": "4.x.x",
+		"body-parser": "1.x.x",
+		"errorhandler": "1.x.x",
+		"jade": ">= 1.x.x",
+		"ejs": ">= 2.x.x"
+	},
+	"engine": "node >= 5.7.1"
 }

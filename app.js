@@ -6,6 +6,7 @@
 var express = require('express');
 
 var bodyParser = require('body-parser');
+var errorHandler = require('errorhandler');
 
 var app = module.exports = express();
 
@@ -19,9 +20,9 @@ app.use(express.static(__dirname + '/public'));
 
 var env = process.env.NODE_ENV || 'development';
 if ('development' == env) {
-  app.use(express.errorHandler({ dumpExceptions: true, showStack: true })); 
+  app.use(errorHandler({ dumpExceptions: true, showStack: true })); 
 } else {
-  app.use(express.errorHandler()); 
+  app.use(errorHandler()); 
 }
 
 // Routes

@@ -9,5 +9,7 @@
 		"jade": ">= 1.x.x",
 		"ejs": ">= 2.x.x"
 	},
-	"engine": "node >= 5.7.1"
+	"engines": {
+		"node":  ">= 5.7.1"
+	}
 }

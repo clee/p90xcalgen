@@ -5,28 +5,24 @@
 
 var express = require('express');
 
-var app = module.exports = express.createServer();
+var bodyParser = require('body-parser');
+
+var app = module.exports = express();
 
 var data = require('./lib/data');
 
 // Configuration
 
-app.configure(function(){
-  app.set('views', __dirname + '/views');
-  app.set('view engine', 'jade');
-  app.use(express.bodyParser());
-  app.use(express.methodOverride());
-  app.use(app.router);
-  app.use(express.static(__dirname + '/public'));
-});
+app.set('views', __dirname + '/views');
+app.set('view engine', 'jade');
+app.use(express.static(__dirname + '/public'));
 
-app.configure('development', function(){
+var env = process.env.NODE_ENV || 'development';
+if ('development' == env) {
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true })); 
-});
-
-app.configure('production', function(){
+} else {
   app.use(express.errorHandler()); 
-});
+}
 
 // Routes
 
@@ -37,7 +33,8 @@ app.get('/', function(req, res){
   });
 });
 
-app.post('/generate', function(req, res){
+var urlencodedParser = bodyParser.urlencoded({ extended: false });
+app.post('/generate', urlencodedParser, function(req, res){
   console.log("user hit generate!, with %j", req.body);
   res.contentType('text/calendar');
   res.attachment('workout.ics');
@@ -53,4 +50,4 @@ app.post('/generate', function(req, res){
 
 var port = process.env.PORT || 3030;
 app.listen(port);
-console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
+console.log("Express server listening on port %d in %s mode", port, app.settings.env);

@@ -1,3 +1,3 @@
-= P90X Calendar Generator =
+= P90X/Insanity Calendar Generator =
 
-This is a really simple nodejs/Express webapp to generate iCalendar files to help you keep track of your P90X workout schedule.
+This is a really simple nodejs/Express webapp to generate iCalendar files to help you keep track of your P90X/P90X2/P90X3/Insanity workout schedule.

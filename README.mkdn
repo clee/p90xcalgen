@@ -1,3 +1,21 @@
-= P90X/Insanity Calendar Generator =
+# P90X/Insanity Calendar Generator
 
 This is a really simple nodejs/Express webapp to generate iCalendar files to help you keep track of your P90X/P90X2/P90X3/Insanity workout schedule.
+
+# Running
+Install `forego` like so:
+
+## On OS X using Homebrew
+
+    brew install forego
+
+## On Linux
+
+	go get -u github.com/ddollar/forego
+
+Then just run:
+
+    forego start
+
+And it should automatically run! This code can also be pushed to Heroku or a Heroku-buildpack-compatible service like your own Dokku server.
+

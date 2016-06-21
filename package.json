@@ -1,6 +1,6 @@
 {
 	"name": "p90xcalgen",
-	"version": "0.3.9",
+	"version": "0.4.0",
 	"private": true,
 	"dependencies": {
 		"express": "4.x.x",

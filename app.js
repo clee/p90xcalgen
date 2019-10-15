@@ -15,7 +15,7 @@ var data = require('./lib/data');
 // Configuration
 
 app.set('views', __dirname + '/views');
-app.set('view engine', 'jade');
+app.set('view engine', 'pug');
 app.use(express.static(__dirname + '/public'));
 
 var env = process.env.NODE_ENV || 'development';

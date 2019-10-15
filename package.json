@@ -6,9 +6,9 @@
 		"body-parser": "1.x.x",
 		"ejs": ">= 2.x.x",
 		"errorhandler": "1.x.x",
-		"express": "4.x.x",
-		"heroku-cli": "^6.12.8",
-		"jade": ">= 1.x.x"
+		"express": ">= 4.5.x",
+		"heroku": "7.x.x",
+		"pug": "2.x.x"
 	},
 	"engines": {
 		"node": ">= 6.11.1"

@@ -7,8 +7,7 @@
 		"ejs": ">= 2.x.x",
 		"errorhandler": "1.x.x",
 		"express": ">= 4.5.x",
-		"heroku": "7.x.x",
-		"pug": "2.x.x"
+		"pug": "3.x.x"
 	},
 	"engines": {
 		"node": ">= 6.11.1"

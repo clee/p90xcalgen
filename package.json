@@ -4,7 +4,7 @@
 	"private": true,
 	"dependencies": {
 		"body-parser": "1.x.x",
-		"ejs": ">= 2.x.x",
+		"ejs": ">= 3.x.x",
 		"errorhandler": "1.x.x",
 		"express": ">= 4.5.x",
 		"pug": "3.x.x"

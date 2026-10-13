@@ -6,7 +6,7 @@
 		"body-parser": "1.x.x",
 		"ejs": ">= 3.x.x",
 		"errorhandler": "1.x.x",
-		"express": ">= 4.21.x",
+		"express": ">= 5.2.x",
 		"pug": "3.x.x"
 	},
 	"engines": {
